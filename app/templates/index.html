@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Reminder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Document Reminder</h1>
+<form action="{{ url_for('add_reminder') }}" method="post">
+    <input type="text" name="document_name" placeholder="Document Name" required>
+    <input type="date" name="due_date" required>
+    <input type="email" name="user_email" placeholder="Your Email" required>
+    <button type="submit">Add Reminder</button>
+</form>
+<ul>
+    {% for reminder in reminders %}
+    <li>{{ reminder.document_name }} - {{ reminder.due_date.strftime('%Y-%m-%d') }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
